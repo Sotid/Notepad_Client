@@ -10,10 +10,13 @@ const refresh = () => {
   window.location.reload()
 }
 
+
 const {values, handleInputsChange, handleSubmit} = useInput();
 
   return (
     <div className="section">
+  
+
       <form onSubmit={handleSubmit} >
         <div class="input-field">
           <input id="note-title" type="text" name="title" class="validate" onChange= {handleInputsChange} value= {values.title} />
@@ -31,8 +34,9 @@ const {values, handleInputsChange, handleSubmit} = useInput();
           </div>
         </div>
         <button onClick= {refresh}  type="submit" variant="contained" color="primary" >
-         Add Note
-        </button>
+        
+Add        </button>
+
       </form>
 
 

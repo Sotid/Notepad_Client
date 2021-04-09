@@ -1,6 +1,5 @@
 import React, {useState} from 'react'
 import NotesList from '../Notes/notesList'
-import Form from './Form'
 
 
 const Home = () => {
@@ -18,8 +17,7 @@ const Home = () => {
 
          </div> 
 
-         <div> <NotesList /></div>
-
+          <NotesList />
           </div>
 
         // </div>

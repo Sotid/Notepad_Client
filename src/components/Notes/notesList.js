@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import noteService from "../../services/notes.service";
 import "../Notes/notesList.css";
+import ImageUploader from "../Notes/ImageUploader"
 import Edit from "../Notes/Edit";
-import Form from "../Home/Form";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
@@ -12,6 +12,7 @@ import Fab from "@material-ui/core/Fab";
 import EditIcon from "@material-ui/icons/Edit";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import { useHistory } from "react-router-dom";
+import {Image, Video, Transformation, CloudinaryContext} from 'cloudinary-react';
 
 const useStyles = makeStyles({
   root: {
@@ -30,21 +31,18 @@ const useStyles = makeStyles({
   },
 });
 
-function NotesList() {
+function NotesList(props) {
   const classes = useStyles();
+
+
+  
 
   const [allNotes, setAllNotes] = useState([]);
   const [hidden, setHidden] = useState({});
   const [hide, setHide] = useState({});
-  let history = useHistory();
 
-  // const completeNote = index => {
+  const history = useHistory();
 
-  //   const newNote = [...allNotes];
-  //   newNote[index].completed = true;
-  //   // setAllNotes(newNote);
-  //   console.log(newNote)
-  // };
 
   const toggleHide = (index) => {
     setHidden({ ...hidden, [index]: !hidden[index] });
@@ -53,6 +51,8 @@ function NotesList() {
   const toggleEdit = (index) => {
     setHide({ ...hide, [index]: !hide[index] });
   };
+
+
 
   useEffect(() => {
     noteService.getAllNotes().then((data) => {
@@ -68,35 +68,24 @@ function NotesList() {
   };
   console.log(allNotes)
 
-  const updateStatus = (id) => {
 
-    let allItems = allNotes.map((item) => {
-      if (item.id === id) {
-        item.completed = true;
-
-      }
-      return item;
-    });
-    setAllNotes(allItems);
-
-  };
 
   return (
     <div className="contain" key={allNotes.id}>
-
-    
+ 
       <Card className={classes.root} variant="outlined">
       <CardContent />
-    
+
           {allNotes.map((one, index) => (
             <div style={{ backgroundColor: "#e8eaf6" }} className="card">
+            <ImageUploader />
+  
               <Fab
                 size="small"
                 color="secondary"
                 aria-label="edit"
                 onClick={(e) => toggleEdit(index)}
               >
-                {" "}
                 <EditIcon />
               </Fab>
               {!!hide[index] && (
@@ -129,7 +118,6 @@ function NotesList() {
                 {!hidden[index] && <span>{one.content}</span>}
               </Typography>
 
-              {/* <button onClick={() => completeNote(index)}>Complete</button> */}
             </div>
           ))}
           </Card>
@@ -137,5 +125,7 @@ function NotesList() {
 
   );
 }
+
+
 
 export default NotesList;
