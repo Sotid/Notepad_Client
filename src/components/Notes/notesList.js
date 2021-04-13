@@ -3,6 +3,7 @@ import noteService from "../../services/notes.service";
 import "../Notes/notesList.css";
 import TagsInput from "../Notes/TagsInput";
 import ImageUploader from "../Notes/ImageUploader";
+import UploadPage from "../Notes/uploadPage";
 import Edit from "../Notes/Edit";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
@@ -27,6 +28,12 @@ import {
 
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 
+const ThEme = createMuiTheme({
+  typography: {
+    fontFamily: ["Indie Flower", "cursive"].join(","),
+  },
+});
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -39,15 +46,16 @@ const theme = createMuiTheme({
       dark: "#EF476F",
     },
   },
+  typography: {
+    fontSize: 20,
+    fontFamily: ["Indie Flower", "cursive"].join(","),
+  },
 });
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    background: "linear-gradient(45deg, #118ab2 50%, #073b4c 90%)",
-    justify: "space-evenly",
+    background: "linear-gradient(45deg, #073b4c 50%, #118ab2 90%)",
   },
- 
+
   expand: {
     transform: "rotate(0deg)",
     marginLeft: "auto",
@@ -64,7 +72,6 @@ function NotesList() {
   const classes = useStyles();
 
   const [allNotes, setAllNotes] = useState([]);
-  const [hidden, setHidden] = useState({});
   const [hide, setHide] = useState({});
   const [expanded, setExpanded] = useState(false);
   const selectedTags = (tags) => {
@@ -96,11 +103,8 @@ function NotesList() {
 
   return (
     <ThemeProvider theme={theme}>
-    
-    <Card className={classes.root}>
-    <CardContent className={classes.root} variant="outlined">
-
-      <div className="contain" key={allNotes.id}>
+      <CardContent className={classes.root} variant="outlined">
+        <div key={allNotes.id}>
           {allNotes.map((one, index) => (
             <div
               style={{
@@ -136,52 +140,48 @@ function NotesList() {
                   style={{ borderRadius: 100 }}
                   onClick={() => deleteNote(one._id)}
                 >
-                  <DeleteIcon
-                    style={{ height: 20, width: 15 }}
-                  />
+                  <DeleteIcon style={{ height: 20, width: 15 }} />
                 </Button>
               </Grid>
               <TagsInput selectedTags={selectedTags} />
 
-              <CardContent>
-                <Typography variant="h5" component="h2">
-                  {one.title}
+              <Typography variant="h5" component="h2">
+                {one.title}
+              </Typography>
+              <CardActions disableSpacing>
+                <Button
+                  variant="outlined"
+                  color="primary"
+                  style={{ height: 20, width: 15 }}
+                  style={{ borderRadius: 50 }}
+                  onClick={(e) => toggleEdit(index)}
+                  className={clsx(classes.expand, {
+                    [classes.expandOpen]: expanded,
+                  })}
+                  onClick={(e) => handleExpandClick(index)}
+                  aria-expanded={expanded === index}
+                  aria-label="show more"
+                >
+                  <ExpandMoreIcon style={{ height: 20, width: 15 }} />
+                </Button>
+              </CardActions>
+              <Collapse in={expanded === index} timeout="auto" unmountOnExit>
+                <Typography
+                  className={classes.pos}
+                  color="textSecondary"
+                  paragraph
+                >
+                  <UploadPage />
+
+                  {one.content}
+
+                  {/* {!hidden[index] && <span >{one.content}</span>} */}
                 </Typography>
-                <CardActions disableSpacing>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    style={{ height: 20, width: 15 }}
-                    style={{ borderRadius: 50 }}
-                    onClick={(e) => toggleEdit(index)}
-                    className={clsx(classes.expand, {
-                      [classes.expandOpen]: expanded,
-                    })}
-                    onClick={(e) => handleExpandClick(index)}
-                    aria-expanded={expanded === index}
-                    aria-label="show more"
-                  >
-                    <ExpandMoreIcon style={{ height: 20, width: 15 }} />
-                  </Button>
-                </CardActions>
-                <Collapse in={expanded === index} timeout="auto" unmountOnExit>
-                <CardContent>
-                  <Typography className={classes.pos} color="textSecondary" paragraph>
-                  <ImageUploader />
-
-                    {one.content}
-
-                    {/* {!hidden[index] && <span >{one.content}</span>} */}
-                  </Typography>
-                  </CardContent>
-                </Collapse>
-              </CardContent>
+              </Collapse>
             </div>
           ))}
-      </div>
-              </CardContent>
-
-      </Card>
+        </div>
+      </CardContent>
     </ThemeProvider>
   );
 }

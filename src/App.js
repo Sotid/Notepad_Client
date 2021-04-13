@@ -6,8 +6,6 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home/Home";
 import Notes from "./components/Notes/Notes";
 import Form from "./components/Home/Form";
-import Edit from "./components/Notes/Edit";
-import NotesList from "./components/Notes/notesList";
 
 function App() {
   return (
@@ -19,7 +17,7 @@ function App() {
 
           <Route exact path="/notes/add" component={Form} />
           <Route exact path="/notes/:id" component={Notes} />
-          <Route exact path="/notes/edit/:id"  />
+          <Route exact path="/notes/edit/:id" />
         </Switch>
       </Router>
     </div>

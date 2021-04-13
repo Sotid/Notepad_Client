@@ -59,7 +59,7 @@ function ImageUploader() {
       </div>
       <Image
         cloudName="soti"
-        publicId={`https://res.cloudinary.com/soti/image/upload/w_120,h_120,c_fit/w_180/${imageId}.png`}
+        publicId={`https://res.cloudinary.com/soti/image/upload/w_120,h_120,c_fit/w_150/${imageId}.png`}
       />
     </div>
   );
