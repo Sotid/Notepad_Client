@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from "react";
 import useInput from "../../customHook/useInput";
 import NotesList from "../Notes/notesList"
-import { Link } from "react-router-dom";
+import TextField from '@material-ui/core/TextField';
+import { makeStyles } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const Form = () => {
 
@@ -10,32 +12,55 @@ const refresh = () => {
   window.location.reload()
 }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& .MuiTextField-root': {
+      margin: theme.spacing(1),
+      width: '35ch',
+      paddingLeft: 100
+    },
+
+  },
+}));
+
+const classes = useStyles();
 
 const {values, handleInputsChange, handleSubmit} = useInput();
 
   return (
+
     <div className="section">
   
 
-      <form onSubmit={handleSubmit} >
+      <form className={classes.root} noValidate autoComplete="off"onSubmit={handleSubmit} >
         <div class="input-field">
-          <input id="note-title" type="text" name="title" class="validate" onChange= {handleInputsChange} value= {values.title} />
+        <TextField
+                   id="standard-multiline-flexible"
 
-          <label class="active" htmlFor="note-title">
-            Title
-          </label>
+          label="Title"
+          style={{ paddingLeft: '3px' }}
+
+          multiline
+          rowsMax={4}  i type="text" name="title"  onChange= {handleInputsChange} value= {values.title} />
+
+        
           <div className="input-field">
-            <label htmlFor="note-content">Write your note</label>
-            <textarea
-              id="note-content"
+          <TextField
+          id="outlined-multiline-static"
+          label="Write your note"
+          variant="outlined"
+          style={{ paddingLeft: '10px' }}
+
+          multiline
+          rows={3}
               name="content"
               onChange= {handleInputsChange}
-              value= {values.content}            ></textarea>
+              value= {values.content}            />
           </div>
         </div>
-        <button onClick= {refresh}  type="submit" variant="contained" color="primary" >
+        <Button variant="contained" color="primary" onClick= {refresh}  type="submit" variant="contained" color="primary" >
         
-Add        </button>
+Add        </Button>
 
       </form>
 

@@ -14,13 +14,12 @@ function App() {
     <div className="App">
       <Router>
         <Navbar />
-        {/* <NotesList /> */}
         <Switch>
           <Route exact path="/notes" component={Home} />
 
           <Route exact path="/notes/add" component={Form} />
           <Route exact path="/notes/:id" component={Notes} />
-          <Route exact path="/notes/edit/:id" component={Edit} />
+          <Route exact path="/notes/edit/:id"  />
         </Switch>
       </Router>
     </div>

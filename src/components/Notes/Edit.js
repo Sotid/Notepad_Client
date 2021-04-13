@@ -1,34 +1,36 @@
-import React, { useState} from "react";
+import React, { useState, useEffect} from "react";
 import {  useHistory} from "react-router-dom";
 import noteService from "../../services/notes.service";
-import notesList from "./notesList";
 import TextField from '@material-ui/core/TextField';
 import SaveRoundedIcon from '@material-ui/icons/SaveRounded';
 import Fab from "@material-ui/core/Fab";
 
-const Edit = () => {
+
+const Edit = ({NoteId}) => {
   const [state,setState] = useState({title: "", content: ""})
+
   let history = useHistory();
- 
+
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    const {title,content}= state
-console.log(state.title)
-    
-    noteService
-      .updateNote( { title, content })
-       .then(() => {
-       console.log(state)
-         history.push("/notes")
+    const { title,content}= state
+  
+         noteService 
+      .updateNote( NoteId, {title, content} )
+
+       .then((data) => {
+     
+         history.push(`/notes`)
+         window.location.reload()
+
       })
       .catch((err) => console.log(err));
 
     }
 
   const handleChange = (event) => {
-
     setState({...state,[event.target.name]: event.target.value})
-console.log(state.title)
   };
 
 
@@ -41,7 +43,7 @@ console.log(state.title)
         label="Title"
         variant="outlined"
         color="secondary"
-      
+
           key="field1"
           type="text"
           name="title"
