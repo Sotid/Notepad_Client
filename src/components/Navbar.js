@@ -6,6 +6,7 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   text: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     top: "auto",
     bottom: 0,
     paddingBottom: 10,
-    background: "linear-gradient(45deg, #118ab2 30%, #073b4c 90%)",
+    background: "linear-gradient(45deg, #c49ee6 30%, #7d4d75 90%)",
   },
   grow: {
     flexGrow: 1,
@@ -34,8 +35,7 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
     margin: "0 auto",
-
-
+    borderRadius: 60,
   },
 }));
 
@@ -60,20 +60,21 @@ const Navbar = () => {
   return (
     <ThemeProvider>
       <div>
-        <AppBar position="static"  className={classes.appBar}>
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <Fab
+            <Button
+              variant="contained"
               onClick={() => setVisible(!visible)}
               aria-label="add"
               className={classes.fabButton}
-              backgroundColor="#118ab2"          >
+              color="primary"
+            >
               <AddIcon />
               {!visible ? "" : ""}
-            </Fab>
+            </Button>
             {visible && (
               <p>
                 <Form />
-                
               </p>
             )}
             <div className={classes.grow} />

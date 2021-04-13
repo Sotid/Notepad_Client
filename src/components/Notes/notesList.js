@@ -53,7 +53,7 @@ const theme = createMuiTheme({
 });
 const useStyles = makeStyles((theme) => ({
   root: {
-    background: "linear-gradient(45deg, #073b4c 50%, #118ab2 90%)",
+    background: "linear-gradient(45deg, #6b8496 50%, #9dd9d2 90%)",
   },
 
   expand: {
@@ -108,7 +108,7 @@ function NotesList() {
           {allNotes.map((one, index) => (
             <div
               style={{
-                backgroundColor: "#ffe169",
+                backgroundColor: "#fff275",
                 maxHeight: 820,
                 maxWidth: 250,
                 minHeight: 250,
@@ -175,7 +175,6 @@ function NotesList() {
 
                   {one.content}
 
-                  {/* {!hidden[index] && <span >{one.content}</span>} */}
                 </Typography>
               </Collapse>
             </div>
