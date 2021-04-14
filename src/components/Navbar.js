@@ -78,6 +78,7 @@ const Navbar = () => {
               </p>
             )}
             <div className={classes.grow} />
+            <p>Sticky</p>
           </Toolbar>
         </AppBar>
       </div>
