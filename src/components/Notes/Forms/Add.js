@@ -1,6 +1,4 @@
-import React, { useEffect, useState } from "react";
-import useInput from "../../customHook/useInput";
-import NotesList from "../Notes/notesList";
+import useInput from "../../../customHook/useInput";
 import TextField from "@material-ui/core/TextField";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -64,7 +62,6 @@ const Form = () => {
           variant="contained"
           onClick={refresh}
           type="submit"
-          variant="contained"
           color="primary"
         >
           Add{" "}

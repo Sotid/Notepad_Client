@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Form from "../components/Home/Form";
+import Form from "../Notes/Forms/Add";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import { makeStyles } from "@material-ui/core/styles";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
@@ -39,19 +38,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const theme = createMuiTheme({
-  palette: {
-    primary: {
-      main: "#118AB2",
-      dark: "#073B4C",
-    },
-    secondary: {
-      light: "#FFD166",
-      main: "#06D6A0",
-      dark: "#EF476F",
-    },
-  },
-});
+
 const Navbar = () => {
   const classes = useStyles();
 

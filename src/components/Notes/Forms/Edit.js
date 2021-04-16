@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import noteService from "../../services/notes.service";
+import noteService from "../../../services/notes.service";
 import TextField from "@material-ui/core/TextField";
 import SaveRoundedIcon from "@material-ui/icons/SaveRounded";
 import Button from "@material-ui/core/Button";
@@ -19,7 +19,7 @@ const Edit = ({ NoteId }) => {
 
       .then((data) => {
         history.push(`/notes`);
-        window.location.reload();
+        // window.location.reload();
       })
       .catch((err) => console.log(err));
   };
@@ -57,9 +57,8 @@ const Edit = ({ NoteId }) => {
         <Button
           color="primary"
           variant="outlined"
-          style={{ height: 20, width: 15 }}
+          style={{ height: 30, width: 15, borderRadius: 50 }}
           aria-label="edit"
-          style={{ borderRadius: 50 }}
           onClick={handleFormSubmit}
         >
           {" "}

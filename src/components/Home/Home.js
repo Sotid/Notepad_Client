@@ -1,24 +1,11 @@
-import React, {useState} from 'react'
-import NotesList from '../Notes/notesList'
-
-  
+import NotesList from "../Notes/NotesList/notesList";
 
 const Home = () => {
-
-
-    return (
-
-    
-
-         <div > 
-        
-
-          <NotesList />
-
-
-          </div>
-
-    )
-}
+  return (
+    <div>
+      <NotesList />
+    </div>
+  );
+};
 
 export default Home;

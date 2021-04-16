@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import noteService from '../services/notes.service';
 
 const useInput1 = () => {    
