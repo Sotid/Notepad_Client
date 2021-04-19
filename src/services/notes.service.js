@@ -27,12 +27,12 @@ class NoteService {
   }
 
   deleteNote(id) {
-    return this.api.delete(`/notes/${id}`).then(({ data }) => data);
+    return this.api.delete(`notes/${id}`).then(({ data }) => data);
   }
 
   addTag(id, newTag) {
     return this.api
-      .post(`/notes/add/${id}/tag`, newTag)
+      .post(`notes/add/${id}/tag`, newTag)
       .then(({ data }) => data);
   }
 }

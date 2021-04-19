@@ -95,6 +95,8 @@ function NotesList() {
     setAllNotes(allNotes.filter((item) => item.id !== id));
   };
 
+  console.log(allNotes)
+
   return (
     <ThemeProvider theme={theme}>
       <Box
