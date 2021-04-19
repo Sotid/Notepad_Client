@@ -23,7 +23,7 @@ const TagsInput = ( props) => {
 
       setTags([...tags, event.target.value], {data});
       props.selectedTags([...tags, event.target.value]);
-      history.push(`/notes`);
+      history.push(`/`);
 
       event.target.value = "";
     })

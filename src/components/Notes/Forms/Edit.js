@@ -18,7 +18,7 @@ const Edit = ({ NoteId }) => {
       .updateNote(NoteId, { title, content })
 
       .then((data) => {
-        history.push(`/notes`);
+        history.push(`/`);
         // window.location.reload();
       })
       .catch((err) => console.log(err));

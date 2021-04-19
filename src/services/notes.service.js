@@ -3,7 +3,7 @@ import axios from "axios";
 class NoteService {
   constructor() {
     this.api = axios.create({
-      baseURL: "https://sticky-n.herokuapp.com/",
+      baseURL: process.env.REACT_APP_API_URL,
       withCredentials: true,
     });
   }

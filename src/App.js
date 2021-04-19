@@ -14,7 +14,7 @@ function App() {
       <Router>
         <Navbar />
         <Switch>
-          <Route exact path="/notes" component={Home} />
+          <Route exact path="/" component={Home} />
 
           <Route exact path="/notes/add" component={Form} />
           <Route exact path="/notes/edit/:id" />
